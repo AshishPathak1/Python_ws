@@ -1,0 +1,34 @@
+negative = False
+
+def isPalindrome(number:int):
+    if not (isinstance(number,int)):
+        raise RuntimeError("Int is not passed to function isPalindrome")
+    number_str = str(number)
+    if len(number_str) <= 1:
+        return True
+    if number_str[0] != number_str[-1]:
+        return False
+    return isPalindrome(int(number_str[1:-1]))
+
+def get_integer()->int :
+    global negative
+    while True:
+        num = input("Please enter an integer:")
+        temp = num.strip()
+        if temp[0] in ['+','-']:
+            temp = temp[1::]
+            if temp[0] == '-':
+                negative = True
+            # print(negative)
+        if not temp.isdigit() :
+            print("Incorrect value supplied!")
+        else:
+            return int(temp)
+
+if __name__ == '__main__':
+    number= get_integer()
+    if isPalindrome(number):
+        if (negative):
+            print(f"-{number} is a palindrome number")
+        print(f"{number} is a palindrome number?{isPalindrome(number)}")
+    # print(negative)
